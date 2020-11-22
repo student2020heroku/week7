@@ -1,7 +1,8 @@
-export default (express, bodyParser, createReadStream, crypto, http) => {
+export default (express, bodyParser, createReadStream, crypto, http, m, UserSchema) => {
     const app = express();
 
-
+    const User = m.model('User', UserSchema);
+    
     const CORS = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET,POST,PUT,DELETE,OPTIONS',
@@ -25,6 +26,15 @@ export default (express, bodyParser, createReadStream, crypto, http) => {
         createReadStream(import.meta.url.substring(7)).pipe(res);
     })
     ;
+
+    app.post('/insert/', async (req, res) => {
+        await m.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
+        const { URL, login, password } = req.body;
+
+        const newUser = new User({ login, password });
+        await newUser.save();
+        res.status(201).json({ success: true });
+    });    
 
     app.all('/req/', (req, res) => {
         const addr = req.method === 'POST' ? req.body.addr : req.query.addr;
