@@ -20,7 +20,6 @@ const UserSchema = new m.Schema({
 const app = appSrc(express, bodyParser, createReadStream, crypto, http, m, UserSchema);
 
 try {
-    await m.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
     app.listen(process.env.PORT ?? 4321);
 } catch(e) {
     console.log(e.codeName);
