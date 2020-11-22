@@ -6,7 +6,7 @@
   },
   "version": "1.0.2",
   "engines": {
-    "node": ">=13.8.0"
+    "node": ">=14.8.0"
   },
   "main": "index.js",
   "type": "module",
