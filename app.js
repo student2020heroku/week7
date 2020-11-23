@@ -20,7 +20,7 @@ export default (express, bodyParser, createReadStream, crypto, http, m, UserSche
         r.res.send(shasum.digest('hex'));
     })
     
-    .get('/login/', (req, res) => res.send('goss'))
+    .get('/login/', (req, res) => res.send('goss__'))
     .get('/code/', (req, res) => {
         res.set({'Content-Type': 'text/plain; charset=utf-8'});
         createReadStream(import.meta.url.substring(7)).pipe(res);
