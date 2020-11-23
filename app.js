@@ -28,8 +28,9 @@ export default (express, bodyParser, createReadStream, crypto, http, m, UserSche
     ;
 
     app.post('/insert/', async (req, res) => {
-        await m.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
         const { URL, login, password } = req.body;
+        await m.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true });
+        
 
         const newUser = new User({ login, password });
         await newUser.save();
