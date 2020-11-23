@@ -37,7 +37,7 @@ export default (express, bodyParser, createReadStream, crypto, http, m, UserSche
 
         const newUser = new User({ login, password });
         await newUser.save();
-        res.status(201).json({ success: true });
+        res.status(201).json({ successsss: true, login });
     });    
 
     app.all('/req/', (req, res) => {
